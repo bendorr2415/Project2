@@ -248,3 +248,55 @@ class Ligand():
 		a float
 		
 ```
+
+```
+Class-less functions:
+
+- read_ligand_csv(csv):
+
+	Creates a new Ligand() object for each line in the ligand_information.csv file, setting the Ligand() object's attributes
+	to the appropriate values from the file.
+
+		Params:
+			csv - a csv file containing ligand information in the same format as ligand_information.csv
+
+		Returns:
+			a list of Ligand() objects
+			
+- silhouetteCoeff(clusters, distanceMatrix):
+
+	Calcualtes and returns the silhouette coefficient for a set of clusters.
+
+		Params:
+			clusters - a list of Cluster() objects
+
+			distanceMatrix - a len(ligands) x len(ligands) 2D array filled with Tanimoto Coefficients corresponding
+				to each row and column ligand pair
+
+		Returns:
+			a float
+			
+- makeDistanceMatrix(ligands, verbose = False):
+
+	Fills a len(ligands) x len(ligands) matrix with the Tanimoto Coefficients of each row and column pair of ligands.
+	A TC of 1 means the ligands have identical fingerprints.
+
+		Params:
+			ligands - a list of Ligand() objects
+
+		Returns:
+			a 2D numpy array
+			
+- jaccardIndex(clusters1, clusters2):
+
+	Calculates and returns the Jaccard Index of two sets of clusters.
+	clusters1 must have a subset of or the same set of ligands as clusters2.
+
+		Params:
+			hcclusters - a list of Cluster() objects. A subset or the same set of ligands as in pcclusters.
+
+			pcclusters - a list of Cluster() objects
+
+		Returns:
+			A float
+```
