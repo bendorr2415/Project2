@@ -51,3 +51,28 @@ def test_hierarchical():
 			ligandIDs.append(ligand.ligandID)
 	assert ligandIDs == [0,0,0,0,0,1,1,1,1,1], 'Hierarchical Clustering Test Failed :('
 	print('Hierarchical Clustering Test Passed')
+	
+def test_make_distance_matrix():
+	ligands = read_test_ligands('ligand_information.csv')
+	distanceMatrix = algs.makeDistanceMatrix(ligands)
+	firstRow = []
+	for e in distanceMatrix[0]:
+		firstRow.append(e)
+	assert firstRow == [1,1,1,1,1,0,0,0,0,0], 'Make Distance Matrix Test Failed'
+	print('Make Distance Matrix Test Passed')
+	
+def test_silhouette_coeff():
+	ligands = read_test_ligands('ligand_information.csv')
+	distanceMatrix = algs.makeDistanceMatrix(ligands)
+	cluster1 = algs.Cluster(algs.Centroid(ligands[0].bitstring))
+	cluster2 = algs.Cluster(algs.Centroid(ligands[5].bitstring))
+	for i in range(5):
+		cluster1.addLigand(ligands[i])
+	for i in range(5):
+		cluster2.addLigand(ligands[i+5])
+	sc = algs.silhouetteCoeff([cluster1, cluster2], distanceMatrix)
+	assert sc == 1, 'Silhouette Coefficient Test Failed'
+	print('Silhouette Coefficient Test Passed')
+	
+def test_jaccard_index():
+	pass
