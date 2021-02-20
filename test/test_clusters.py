@@ -22,7 +22,7 @@ def read_test_ligands(csv):
 			if i>0:
 				for j in range(5):
 					ligandID, score, smiles, onbits = line.split(',',3) #set max number of splits = 3
-					ligands.append(Ligand(index, ligandID, score, smiles, onbits.replace('"', '').rstrip())) #remove ""'s and eol char
+					ligands.append(algs.Ligand(index, ligandID, score, smiles, onbits.replace('"', '').rstrip())) #remove ""'s and eol char
 					index += 1
 			i+=1
 			if i == 3:
