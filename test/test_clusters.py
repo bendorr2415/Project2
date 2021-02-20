@@ -76,3 +76,9 @@ def test_silhouette_coeff():
 	
 def test_jaccard_index():
 	pass
+
+def test_csv_io():
+	ligands = algs.read_ligand_csv('ligand_information.csv')
+	assert ligands[0].ligandID == 0
+	assert ligands[0].score == -1.3
+	print("'CSV File I/O' Test Passed")
