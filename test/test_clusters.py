@@ -1,6 +1,8 @@
 
 import pytest
 
+from clusters import algs
+
 def read_test_ligands(csv):
 	"""
 	Returns a list of 10 ligands. The first 5 are ligand 1 from ligand_information.csv, and the next 5 are ligand 2 from the same file.
@@ -28,8 +30,8 @@ def read_test_ligands(csv):
 
 def test_partitioning():
 	ligands = read_test_ligands('ligand_information.csv')
-	distanceMatrix = makeDistanceMatrix(ligands)
-	pc = PartitionClustering()
+	distanceMatrix = algs.makeDistanceMatrix(ligands)
+	pc = algs.PartitionClustering()
 	pcclusters = pc.cluster(ligands, distanceMatrix, 2)
 	ligandIDs = []
 	for cluster in pcclusters:
@@ -40,8 +42,8 @@ def test_partitioning():
 
 def test_hierarchical():
 	ligands = read_test_ligands('ligand_information.csv')
-	distanceMatrix = makeDistanceMatrix(ligands)
-	hc = HierarchicalClustering()
+	distanceMatrix = algs.makeDistanceMatrix(ligands)
+	hc = algs.HierarchicalClustering()
 	hcclusters = hc.cluster(ligands, distanceMatrix, 2)
 	ligandIDs = []
 	for cluster in hcclusters:
