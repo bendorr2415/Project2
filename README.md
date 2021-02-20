@@ -84,6 +84,7 @@ Class PartitionClustering():
   
     -  None
 
+
   - Methods:
 
     - cluster(self, ligands, distanceMatrix, numClusters, verbose=False):
@@ -113,7 +114,18 @@ Class PartitionClustering():
 
 
     - initializeClusters(self, centroids):
-    
+
+      For each Centroid() object in centroids, creates a new Cluster() object with the Centroid.  Returns a list of these Cluster objects
+
+        Params:
+          centroids - a list of Centroid() objects
+
+        Returns:
+          a list of Cluster() objects
+          
+          
+    - initializeCentroids(self, numClusters, ligands, distanceMatrix):
+		
       Picks numClusters centroids from the ligands list. The probability of each ligand being chosen as a
       centroid is inversely proportional to its distance from the closest centroid that has already been
       chosen.
@@ -125,4 +137,32 @@ Class PartitionClustering():
 
           distanceMatrix - a len(ligands) x len(ligands) 2D array filled with Tanimoto Coefficients corresponding
           to each row and column ligand pair
+
+        Returns:
+          a list of Centroid() objects 
+```
+
+```
+class Centroid():
+
+  - Attributes:
+    
+    - bitstring - a 1024-element array of 1's and 0's
+    - onbits - a list of the indeces in the bitstring that contain a '1'
+
+
+  - Methods:
+    
+    - bitstringToOnbits(self, bitstring):
+
+      Calculates and returns the densified representation of the bitstring by returning a list of indeces at
+        which the bitstring had 1's.
+
+        Params:
+          bitstring - a 1024 element list of 1's and 0's
+
+        Returns:
+          a list of indeces at which the bitstring contained 1's
+
+```
 
