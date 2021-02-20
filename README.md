@@ -41,3 +41,10 @@ calls that were used in answering assignment questions.
   
 -ligand_information.csv: a .csv file containing information about ligands that were docked against the SARS-CoV2 Spike protein / Human ACE2 Interface
 ```
+
+### API
+
+```
+Class HierarchicalClustering():
+
+  -contains a .cluster method
