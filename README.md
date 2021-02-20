@@ -147,8 +147,8 @@ class Centroid():
 
   - Attributes:
     
-    - bitstring - a 1024-element array of 1's and 0's
-    - onbits - a list of the indeces in the bitstring that contain a '1'
+    - bitstring: a 1024-element array of 1's and 0's
+    - onbits: a list of the indeces in the bitstring that contain a '1'
 
 
   - Methods:
@@ -166,3 +166,85 @@ class Centroid():
 
 ```
 
+```
+class Cluster:
+
+  - Attributes:
+  
+      - centroid: a Centroid() object
+      - ligands: a list of Ligand() objects
+
+  - Methods:
+
+    - set_centroid(self, centroid):
+
+    - addLigand(self, ligand):
+
+    - removeLigand(self, ligand):
+
+    - resetLigands(self):
+
+    - calcCentroid(self, ligands):
+	Calculates and returns a bitstring that represents the average bitstring across all the ligands in the ligand list parameter. Any bit
+	position that is 1 in most of the given ligand bitstrings will have a 1 in the final bitstring, and the same is true for 0s.
+	Creates a new Centroid object with this bitstring and returns it.
+	If the ligand list is empty, it returns the Cluster's current centroid object.
+
+	Params:
+		ligands - a list of ligand objects
+
+	Returns:
+		a centroid object.  Either a new centroid object with the new average bitstring, or the current centroid attribute of the Cluster object
+
+    - calcCentroidMoved(self):
+	Returns the number of bits that changed between the bitstrings of the Cluster() object's previous centroid and its new centroid.
+
+	Params:
+		None
+
+	Returns:
+		an int, representing the total number of bits that changed between the Cluster's old and new centroids' bitstrings
+
+    - updateCentroid(self):
+	Sets the Cluster() object's centroid attribute to what is returned from the Cluster() object's calcCentroid method.
+
+	Params:
+		None
+
+	Returns:
+		None
+```
+
+```
+class Ligand():
+
+  - Attributes:
+    
+    - ligandIndex: the index of the ligand in the .csv file
+    - ligandID: the ligandID given in the .csv file
+    - score: The AutoDock Vina score of the ligand
+    - smiles: the SMILES string of the ligand
+    - onbits: the list of indeces at which the ligand's bitstring contains 1's
+    - bitstring: a 1024-element array of 1's and 0's
+
+  - Methods:
+    
+    - onbitsToBitstring(self, onbits):
+	Converts a densified string of onbits to an expanded, 1024-bit-long bitstring.
+
+	Params:
+		onbits - a list of onbits for a 1024-bit-long bitstring.
+
+	Returns:
+		A 1024-element numpy array of 1s and 0s.
+		
+    - tanimotoCoefficient(self, other):
+	Calculates the Tanimoto Coefficient between two ligands' list of onbits.
+
+	Params:
+		An object that contains an .onbits attribute, such as a Ligand() or Centroid() object
+
+	Returns:
+		a float
+		
+```
