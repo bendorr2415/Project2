@@ -3,6 +3,8 @@ import pytest
 
 from clusters import algs
 
+@pytest.fixture
+
 def read_test_ligands(csv):
 	"""
 	Returns a list of 10 ligands. The first 5 are ligand 1 from ligand_information.csv, and the next 5 are ligand 2 from the same file.
