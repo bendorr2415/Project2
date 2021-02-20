@@ -47,4 +47,66 @@ calls that were used in answering assignment questions.
 ```
 Class HierarchicalClustering():
 
-  -contains a .cluster method
+  - Attributes:
+  
+    - None
+
+
+  - Methods:
+  
+    - cluster(self, ligands, distanceMatrix, numClusters, verbose = False):
+    
+      Clusters the given ligands into numClusters clusters using the average linkage hierarchical clustering algorithm.  Treats each individual ligand
+      as its own cluster from the start.  Finds the two most similar clusters using the given distance matrix and combines them into the same
+      cluster. Calculates the clusters' average distance to all other clusters and adds this array of distances to the last row and last column of
+      the distance matrix, then removes the rows and columns that correspond to the individual clusters that were combined.  Repeats this process until
+      there are numClusters clusters remaining.
+
+        Params:
+          ligands - a list of Ligand() objects
+
+          distanceMatrix - a len(ligands) x len(ligands) 2D array filled with Tanimoto Coefficients corresponding
+          to each row and column ligand pair
+
+          numClusters - an int dictating how many Cluster() objects will be returned
+
+          verbose - when true, prints the iteration number of the algorithm as it's running
+
+        Returns:
+          a list of Cluster() objects
+          
+          
+Class PartitionClustering():
+
+  - Attributes:
+  
+    -  None
+
+  - Methods:
+
+    - cluster(self, ligands, distanceMatrix, numClusters, verbose=False):
+
+      Clusters the given ligands into numClusters clusters using the K-Means++ partition clustering algorithm.  Initializes numClusters
+      Centroid() objects, and uses these to initialize numClusters Cluster() objects.  For each ligand, calculates which cluster's centroid
+      is closest to the ligand and adds that ligand to that cluster.  Once all ligands have been added to a cluster, ensures that no clusters
+      have no ligands.  If a cluster is empty (has no ligands), then removes one ligand from a non-empty cluster and adds this ligand to the 
+      empty cluster.  Then calculates a new centroid based on each clusters' new list of ligands, and determines if the centroids have moved from
+      the last iteration.  If they have not moved, the clustering is complete.  If they have moved, then the clusters' centroids are updated, and
+      the process of assigning ligands begins again with the new centroids.  This process repeats until either the centroids stop moving, or the
+      algorithm has run for 100 iterations.
+
+        Params:
+          ligands - a list of Ligand() objects
+
+          distanceMatrix - a len(ligands) x len(ligands) 2D array filled with Tanimoto Coefficients corresponding
+          to each row and column ligand pair
+
+          numClusters - an int dictating how many Cluster() objects will be returned
+
+          verbose - when true, prints the iteration number of the algorithm as it's running, as well as the number of bits that changed
+          across all the centroids' .bitstring attributes in that iteration (which is a measure of how much the centroids moved in that iteration)
+
+        Returns:
+          a list of Cluster() objects
+
+
