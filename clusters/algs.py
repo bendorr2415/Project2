@@ -4,9 +4,7 @@ import random
 
 class HierarchicalClustering():
 	def __init__(self):
-		self.ligands = []
-		self.numClusters = 0
-		self.distanceMatrix = []
+		pass
 
 	def cluster(self, ligands, distanceMatrix, numClusters, verbose = False):
 		"""
@@ -92,9 +90,7 @@ class HierarchicalClustering():
 
 class PartitionClustering():
 	def __init__(self):
-		self.ligands = []
-		self.numClusters = 0
-		self.distanceMatrix = []
+		pass
 
 
 	def cluster(self, ligands, distanceMatrix, numClusters, verbose=False):
