@@ -75,7 +75,22 @@ def test_silhouette_coeff():
 	print('Silhouette Coefficient Test Passed')
 	
 def test_jaccard_index():
-	pass
+	ligands = read_test_ligands('ligand_information.csv')
+	distanceMatrix = algs.makeDistanceMatrix(ligands)
+	cluster1 = algs.Cluster(algs.Centroid(ligands[0].bitstring))
+	cluster2 = algs.Cluster(algs.Centroid(ligands[5].bitstring))
+	cluster3 = algs.Cluster(algs.Centroid(ligands[0].bitstring))
+	cluster4 = algs.Cluster(algs.Centroid(ligands[5].bitstring))
+	for i in range(5):
+		cluster1.addLigand(ligands[i])
+		cluster3.addLigand(ligands[i])
+	for i in range(5):
+		cluster2.addLigand(ligands[i+5])
+		cluster4.addLigand(ligands[i+5])
+	ji1 = algs.jaccardIndex([cluster1, cluster2], [cluster3, cluster4])
+	ji2 = algs.jaccardIndex([cluster1, cluster3], [cluster2, cluster4])
+	assert ji1 == 1 and ji2 == 0, 'Jaccard Index Test Failed'
+	print('Jaccard Index Test Passed')
 
 def test_csv_io():
 	ligands = algs.read_ligand_csv('ligand_information.csv')
