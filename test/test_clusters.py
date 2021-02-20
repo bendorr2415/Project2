@@ -3,7 +3,6 @@ import pytest
 
 from clusters import algs
 
-@pytest.fixture
 
 def read_test_ligands(csv):
 	"""
