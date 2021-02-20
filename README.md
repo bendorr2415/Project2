@@ -23,3 +23,18 @@ Testing is as simple as running
 python -m pytest test/*
 ```
 from the root directory of this project.
+
+
+### Layout of Repo
+
+```
+-Ben_Orr_BMI203_HW2.ipynb: a Jupyter notebook containing written answers to assignment questions in prose, as well as function definitions and function calls that were used in answering assignment questions.
+
+-clusters/
+  -algs.py: contains HierarchicalClustering, ParitionClustering, Centroid, Cluster, and Ligand class definitions, as well as read_ligand_csv, silhouetteCoeff, makeDistanceMatrix, and jaccardIndex function definitions.  Lastly, contains unit test definitions for each of the functions above, as well as for the .cluster methods for the two Clustering classes.
+
+-test/
+  -test_clusters.py: contains function definitions for unit tests
+  
+-ligand_information.csv: a .csv file containing information about ligands that were docked against the SARS-CoV2 Spike protein / Human ACE2 Interface
+```
