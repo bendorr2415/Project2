@@ -74,7 +74,9 @@ Class HierarchicalClustering():
 
         Returns:
           a list of Cluster() objects
-          
+```
+
+```
           
 Class PartitionClustering():
 
@@ -109,4 +111,18 @@ Class PartitionClustering():
         Returns:
           a list of Cluster() objects
 
+
+    - initializeClusters(self, centroids):
+    
+      Picks numClusters centroids from the ligands list. The probability of each ligand being chosen as a
+      centroid is inversely proportional to its distance from the closest centroid that has already been
+      chosen.
+
+        Params:
+          numClusters - an int dictating how many centroids will be returned
+
+          ligands - a list of Ligand() objects
+
+          distanceMatrix - a len(ligands) x len(ligands) 2D array filled with Tanimoto Coefficients corresponding
+          to each row and column ligand pair
 
